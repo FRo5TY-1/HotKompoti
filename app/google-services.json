@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "758043890233",
+    "firebase_url": "https://hotkompoti-default-rtdb.firebaseio.com",
+    "project_id": "hotkompoti",
+    "storage_bucket": "hotkompoti.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758043890233:android:52ed25416d0424690db3e8",
+        "android_client_info": {
+          "package_name": "com.example.hotkompoti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "758043890233-cd4im27pc05dtjd77kq0ai0prkoulgud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDP-cZEkgxF36Jql9XUd_tQXJ4vBSvdgJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "758043890233-cd4im27pc05dtjd77kq0ai0prkoulgud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
