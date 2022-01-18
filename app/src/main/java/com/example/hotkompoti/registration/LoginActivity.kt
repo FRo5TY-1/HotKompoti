@@ -1,12 +1,11 @@
-package com.example.hotkompoti
+package com.example.hotkompoti.registration
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.hotkompoti.R
 import com.example.hotkompoti.databinding.ActivityLoginBinding
 import com.example.hotkompoti.profile.ProfileActivity
-import com.example.hotkompoti.registration.ForgotActivity
-import com.example.hotkompoti.registration.RegisterActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
@@ -30,20 +29,27 @@ class LoginActivity : AppCompatActivity() {
     private fun registerListeners() {
 
         binding.loginRegisterButton.setOnClickListener {
+            binding.loginRegisterButton.isEnabled = false
             startActivity(Intent(this, RegisterActivity::class.java))
+            binding.loginRegisterButton.isEnabled = true
         }
 
         binding.loginForgotButton.setOnClickListener {
+            binding.loginForgotButton.isEnabled = false
             startActivity(Intent(this, ForgotActivity::class.java))
+            binding.loginForgotButton.isEnabled = true
         }
 
         binding.loginButton.setOnClickListener {
+            binding.loginButton.isEnabled = false
             val email = binding.loginEmail.text.toString()
             val password = binding.loginPassword.text.toString()
 
             if (email.isEmpty() || password.isEmpty()) {
-                binding.loginEmailContainer.helperText = "This field can't be empty"
-                binding.loginPasswordContainer.helperText = "This field can't be empty"
+                binding.loginEmailContainer.helperText = "Invalid Email or Password"
+                binding.loginPasswordContainer.helperText = "Invalid Email or Password"
+                binding.loginButton.isEnabled = true
+                return@setOnClickListener
             }
 
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
@@ -53,9 +59,9 @@ class LoginActivity : AppCompatActivity() {
                 } else {
                     binding.loginEmailContainer.helperText = "Invalid Email or Password"
                     binding.loginPasswordContainer.helperText = "Invalid Email or Password"
+                    binding.loginButton.isEnabled = true
                 }
             }
-
         }
 
     }

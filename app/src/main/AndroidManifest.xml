@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HotKompoti">
         <activity
+            android:name=".profile.EditProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".registration.ChangePasswordActivity"
+            android:exported="true" />
+        <activity
             android:name=".registration.ForgotActivity"
             android:exported="true" />
         <activity
@@ -19,7 +25,7 @@
             android:name=".registration.RegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".registration.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

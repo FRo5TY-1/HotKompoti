@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.hotkompoti.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/menuFragment"
+        tools:layout="@layout/fragment_menu"
+        android:name="com.example.hotkompoti.fragments.MenuFragment"
+        android:label="MenuFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        tools:layout="@layout/fragment_profile"
+        android:name="com.example.hotkompoti.fragments.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        tools:layout="@layout/fragment_notifications"
+        android:name="com.example.hotkompoti.fragments.NotificationsFragment"
+        android:label="NotificationsFragment" />
+</navigation>

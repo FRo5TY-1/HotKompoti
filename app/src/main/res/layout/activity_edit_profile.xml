@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/black"
+    tools:context=".profile.EditProfileActivity">
+
+    <ImageView
+        android:id="@+id/editProfilePicture"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/rounded_pictures"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_person_24" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editProfilePicture">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/firstNameContainer"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:textColorHint="@color/white"
+            app:helperText="required"
+            app:helperTextTextColor="#DA0101">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/firstNameEditText"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:hint="First Name"
+                android:inputType="text"
+                android:maxLength="16" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lastNameContainer"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColorHint="@color/white"
+            app:helperText="required"
+            app:helperTextTextColor="#DA0101">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/lastNameEditText"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:hint="Last Name"
+                android:inputType="text"
+                android:maxLength="16" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/countryContainer"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:textColorHint="@color/white"
+            app:helperText="required"
+            app:helperTextTextColor="#DA0101">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/countryEditText"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:hint="Country"
+                android:inputType="text"
+                android:maxLength="16" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/numberContainer"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColorHint="@color/white"
+            app:helperText="required"
+            app:helperTextTextColor="#DA0101">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/numberEditText"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:hint="Phone Number"
+                android:inputType="phone"
+                android:maxLength="16" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/editProfileFinish"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/finish"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout1" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

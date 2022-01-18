@@ -8,21 +8,21 @@
     tools:context=".profile.ProfileActivity">
 
 
-    <ImageView
-        android:id="@+id/profileImageView"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hot_kompoti_logo" />
+        app:menu="@menu/bottom_navigation_menu" />
 
-    <Button
-        android:id="@+id/profileLogOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/log_out"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileImageView" />
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost = "true"
+        app:navGraph="@navigation/nav_graph"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
