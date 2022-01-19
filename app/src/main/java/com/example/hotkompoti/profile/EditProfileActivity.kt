@@ -2,11 +2,10 @@ package com.example.hotkompoti.profile
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
+import android.util.Log
 import com.example.hotkompoti.R
 import com.example.hotkompoti.data.UserInfo
 import com.example.hotkompoti.databinding.ActivityEditProfileBinding
@@ -20,6 +19,7 @@ import java.util.*
 
 class EditProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditProfileBinding
+    private var editProfilePhotoUri: Uri? = null
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseDatabase.getInstance().getReference("Users")
 
@@ -43,13 +43,12 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun onClickListeners() {
 
-        binding.editProfilePicture.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"
-            startActivityForResult(intent, 0)
+        binding.chooseImageButton.setOnClickListener {
+            selectImageFromGallery()
         }
 
         binding.editProfileFinish.setOnClickListener {
+
             if (dataLoad()) {
                 startActivity(Intent(this, ProfileActivity::class.java))
                 finish()
@@ -58,39 +57,23 @@ class EditProfileActivity : AppCompatActivity() {
 
     }
 
-    var editProfilePhotoUri: Uri? = null
+    private fun selectImageFromGallery() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent, 100)
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (resultCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
-
-            editProfilePhotoUri = data.data
-
-//            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, editProfilePhotoUri)
-//
-//            val bitmapDrawable = BitmapDrawable(bitmap)
-//            binding.editProfilePicture.setBackgroundDrawable(bitmapDrawable)
-        }
-    }
-
-    private var pictureUrl: String? = null
-
-    private fun uploadImageToStorage() {
-        if(editProfilePhotoUri == null) return
-
-        val filename = UUID.randomUUID().toString()
-        val ref = FirebaseStorage.getInstance().getReference("/images/${filename}")
-
-        ref.putFile(editProfilePhotoUri!!).addOnSuccessListener {
-            ref.downloadUrl.addOnSuccessListener {
-                pictureUrl = it.toString()
-            }
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+            editProfilePhotoUri = data?.data!!
+            binding.editProfilePicture.setImageURI(editProfilePhotoUri)
         }
     }
 
     private fun dataLoad(): Boolean {
-        uploadImageToStorage()
 
         val firstNameValidate = binding.firstNameContainer.helperText == null
         val lastNameValidate = binding.lastNameContainer.helperText == null
@@ -98,13 +81,18 @@ class EditProfileActivity : AppCompatActivity() {
         val numberValidate = binding.numberContainer.helperText == null
 
         if (firstNameValidate && lastNameValidate && countryValidate && numberValidate) {
-            val picture = pictureUrl.toString()
+            val filename = UUID.randomUUID().toString()
+            val ref = FirebaseStorage.getInstance().getReference("/images/${filename}")
+
+            if(editProfilePhotoUri != null) {
+                ref.putFile(editProfilePhotoUri!!)
+            }
+
             val firstName = binding.firstNameEditText.text.toString()
             val lastName = binding.lastNameEditText.text.toString()
             val country = binding.countryEditText.text.toString()
             val number = binding.numberEditText.text.toString()
-
-            val userInfo = UserInfo(picture, firstName, lastName, country, number)
+            val userInfo = UserInfo(filename, firstName, lastName, country, number)
             db.child(auth.currentUser?.uid!!).setValue(userInfo)
 
             return true
