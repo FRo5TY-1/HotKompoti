@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.util.Patterns
 import com.example.hotkompoti.R
 import com.example.hotkompoti.databinding.ActivityRegisterBinding
-import com.example.hotkompoti.profile.ProfileActivity
+import com.example.hotkompoti.profile.EditProfileActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {
@@ -42,7 +42,7 @@ class RegisterActivity : AppCompatActivity() {
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        startActivity(Intent(this, ProfileActivity::class.java))
+                        startActivity(Intent(this, EditProfileActivity::class.java))
                         finish()
                     }
                 }

@@ -9,11 +9,11 @@
     <ImageView
         android:id="@+id/profilePictureView"
         android:layout_width="150dp"
+        android:background="@drawable/white_outline"
         android:layout_height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_person_24" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/profilePersonName"
@@ -47,6 +47,8 @@
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/profileViewPager"
+        android:background="@drawable/white_outline"
+        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"

@@ -114,5 +114,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerRepeatPasswordContainer" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

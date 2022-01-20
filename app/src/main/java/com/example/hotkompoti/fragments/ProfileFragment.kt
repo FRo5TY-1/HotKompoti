@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.example.hotkompoti.R
 import com.example.hotkompoti.adapters.ProfileViewPagerAdapter
 import com.example.hotkompoti.databinding.FragmentProfileBinding
@@ -13,6 +14,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private lateinit var fragmentProfileBinding: FragmentProfileBinding
@@ -37,7 +39,17 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             if (it.exists()) {
                 val firstName = it.child("firstName").value
                 val lastName = it.child("lastName").value
-                val pictureUrl = it.child("pictureUrl").value
+                val fileName = it.child("pictureUrl").value
+                val ref = FirebaseStorage.getInstance().getReference("/images/${fileName}")
+
+                ref.downloadUrl.addOnSuccessListener { it1 ->
+                    Glide
+                        .with(this)
+                        .load(it1)
+                        .centerCrop()
+                        .placeholder(R.drawable.ic_baseline_person_24)
+                        .into(binding.profilePictureView)
+                }
 
                 binding.profilePersonName.text = "$firstName $lastName"
             }
