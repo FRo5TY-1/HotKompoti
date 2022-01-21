@@ -13,7 +13,7 @@
         android:background="@color/black">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/personProfilePicture"
+            android:id="@+id/notificationPersonPicture"
             android:layout_width="100dp"
             app:civ_border_width="3dp"
             app:civ_border_color="#2E2D2D"
@@ -23,31 +23,32 @@
             android:src="@drawable/ic_baseline_person_24" />
 
         <TextView
-            android:id="@+id/personName"
+            android:id="@+id/notificationTitle"
             android:layout_marginLeft="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/personProfilePicture"
+            android:layout_alignTop="@+id/notificationPersonPicture"
             android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@+id/personProfilePicture"
+            android:layout_toEndOf="@+id/notificationPersonPicture"
             android:fontFamily="sans-serif-light"
-            android:maxLines="1"
+            android:maxLines="2"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/personFrom"
+            android:id="@+id/notificationDescription"
             android:layout_marginLeft="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/personName"
+            android:layout_below="@+id/notificationTitle"
             android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@+id/personProfilePicture"
+            android:layout_toEndOf="@+id/notificationPersonPicture"
             android:fontFamily="sans-serif-light"
-            android:maxLines="1"
+            android:maxLines="5"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:textStyle="bold"/>
 
     </RelativeLayout>

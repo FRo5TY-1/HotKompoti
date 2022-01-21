@@ -2,7 +2,6 @@ package com.example.hotkompoti.profile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.RecyclerView
 import com.example.hotkompoti.R
 import com.example.hotkompoti.data.MessageInfo
 import com.example.hotkompoti.data.UserInfo
@@ -12,6 +11,8 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
@@ -50,11 +51,14 @@ class ChatActivity : AppCompatActivity() {
         ref.addChildEventListener(object: ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val chatMessage = snapshot.getValue(MessageInfo::class.java)
+                val fromId = chatMessage?.fromId
+                val user = intent.getParcelableExtra<UserInfo>(HomeFragment.USER_KEY)
+                val toId = user?.uid
 
                 if (chatMessage != null) {
-                    if (chatMessage.fromId == FirebaseAuth.getInstance().uid) {
+                    if (fromId == FirebaseAuth.getInstance().uid && toId == chatMessage.toId) {
                         adapter.add(ChatSentItem(chatMessage.text))
-                    } else {
+                    } else if (toId == FirebaseAuth.getInstance().uid && fromId == chatMessage.toId){
                         adapter.add(ChatReceivedItem(chatMessage.text))
                     }
                 }
@@ -89,6 +93,7 @@ class ChatActivity : AppCompatActivity() {
         val chatMessage = MessageInfo(reference.key!!, text, fromId, toId!!, System.currentTimeMillis() / 1000)
         reference.setValue(chatMessage)
             .addOnSuccessListener {
+                editTextChatActivity.text.clear()
             }
     }
 }

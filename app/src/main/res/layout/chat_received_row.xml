@@ -15,14 +15,16 @@
         android:maxWidth="250dp"
         android:layout_marginLeft="8dp"
         android:padding="16dp"
-        android:text="This is my message that will wrap into multiple lines and keep on going"
+        android:text="awdawdawdawdiawdhiahwudwadhqhqdqd"
         android:textColor="@color/white"
-        app:layout_constraintStart_toEndOf="@+id/imageview_chat_to_row"
-        app:layout_constraintTop_toTopOf="@+id/imageview_chat_to_row" />
+        app:layout_constraintStart_toEndOf="@+id/imageViewReceived"
+        app:layout_constraintTop_toTopOf="@+id/imageViewReceived" />
 
-    <ImageView
-        android:id="@+id/imageview_chat_to_row"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageViewReceived"
         android:layout_width="50dp"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#2E2D2D"
         android:layout_height="50dp"
         android:src="@drawable/ic_baseline_person_24"
         app:layout_constraintStart_toStartOf="parent"
