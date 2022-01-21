@@ -88,11 +88,12 @@ class EditProfileActivity : AppCompatActivity() {
                 ref.putFile(editProfilePhotoUri!!)
             }
 
+            val uid = auth.uid.toString()
             val firstName = binding.firstNameEditText.text.toString()
             val lastName = binding.lastNameEditText.text.toString()
             val country = binding.countryEditText.text.toString()
             val number = binding.numberEditText.text.toString()
-            val userInfo = UserInfo(filename, firstName, lastName, country, number)
+            val userInfo = UserInfo(uid, filename, firstName, lastName, country, number)
             db.child(auth.currentUser?.uid!!).setValue(userInfo)
 
             return true

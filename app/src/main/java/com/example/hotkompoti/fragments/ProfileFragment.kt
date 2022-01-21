@@ -56,7 +56,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
 
         TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
-            tab.text = "Tab ${position + 1}"
+            when(position) {
+                0-> {tab.text = "About Me"}
+                1-> {tab.text = "Friends"}
+            }
+
         }.attach()
 
         binding.editProfileButton.setOnClickListener {

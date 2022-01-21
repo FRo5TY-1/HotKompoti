@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HotKompoti">
         <activity
+            android:name=".profile.ChatActivity"
+            android:exported="true" />
+        <activity
             android:name=".profile.EditProfileActivity"
             android:exported="true" />
         <activity
